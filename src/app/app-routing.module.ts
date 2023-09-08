@@ -7,24 +7,29 @@ import { FinalComponent } from './pages/final/final.component';
 const routes: Routes = [
   {
     path: 'welcome',
-    component: WelcomeComponent
+    component: WelcomeComponent,
   },
   {
     path: 'me',
-    component: MeComponent
+    component: MeComponent,
   },
   {
     path: 'final',
-    component: FinalComponent
+    component: FinalComponent,
   },
   {
     path: '**',
-    redirectTo: 'welcome'
+    redirectTo: 'welcome',
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      relativeLinkResolution: 'legacy',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
