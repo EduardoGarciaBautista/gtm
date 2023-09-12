@@ -10,19 +10,14 @@ declare global {
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'tagg';
   constructor(private router: Router) {
-    this.router.events
-    .pipe(filter((event) => event instanceof NavigationEnd))
-    .subscribe((event: any) => {
-      window.dataLayer.push({
-        event: 'pageview',
-        path: event['urlAfterRedirects'],
-        title: 'titulo: ' + event['urlAfterRedirects']
-      }); // push an empty object to trigger a new event
-    })
+    window.dataLayer.push({
+      event: 'pageview',
+      path: this.router.url,
+      title: 'FIRST LOAD: ' + this.router.url,
+    });
   }
 }
